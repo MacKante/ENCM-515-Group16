@@ -10,6 +10,7 @@ RM := rm -rf
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include Drivers/STM32F4xx_HAL_Driver/Src/subdir.mk
+-include Drivers/CMSIS_DSP/Source/SupportFunctions/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
 -include objects.mk
@@ -60,8 +61,8 @@ all: main-build
 main-build: Group16_Lab1.elf secondary-outputs
 
 # Tool invocations
-Group16_Lab1.elf Group16_Lab1.map: $(OBJS) $(USER_OBJS) C:\Users\dominic\STM32CubeIDE\ENCM-515-Group16\Group16_Lab1\STM32F411VETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Group16_Lab1.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\dominic\STM32CubeIDE\ENCM-515-Group16\Group16_Lab1\STM32F411VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Group16_Lab1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Group16_Lab1.elf Group16_Lab1.map: $(OBJS) $(USER_OBJS) C:\Users\dominic\Desktop\Schoolwork\2025_Q1_Winter\ENCM\ 515\ENCM-515-Group16\LAB-1\Group16_Lab1\STM32F411VETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Group16_Lab1.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\dominic\Desktop\Schoolwork\2025_Q1_Winter\ENCM 515\ENCM-515-Group16\LAB-1\Group16_Lab1\STM32F411VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Group16_Lab1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "arm_math.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -32,6 +33,8 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 #define ITM_Port32(n) (*((volatile unsigned long *)(0xE0000000+4*n)))
+
+#define FFT_Length 1024
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -48,6 +51,8 @@ I2S_HandleTypeDef hi2s3;
 SPI_HandleTypeDef hspi1;
 
 /* USER CODE BEGIN PV */
+float32_t FFT_Input_Q15_f[50];
+float32_t aFFT_Input_Q15[50];
 
 /* USER CODE END PV */
 
@@ -107,10 +112,8 @@ int main(void)
   HAL_SuspendTick();
 //  printf(" Dominic Choi\nNathan Ante\nJan 30, 2025\nA Short Joke\n");
 
-  ITM_Port32(31) = 1;
 //  BasicLoopTest();
-  FloatingExperiment();
-  ITM_Port32(31) = 2;
+
 
 
   /* USER CODE END 2 */
@@ -119,6 +122,10 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	ITM_Port32(31) = 1;
+	CMSISExperiment();
+	ITM_Port32(31) = 2;
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -450,6 +457,18 @@ void FloatingExperiment(void){
 }
 
 void FixedExperiment(void){
+	int16_t a = 0.5;
+	int16_t b = 0.125;
+	int16_t c = a * b;
+}
+
+void CMSISExperiment(void){
+	float a[10] = {-0.11, -0.12, -0.13, -0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 1.20};
+	q15_t b[10];
+	float32_t c[10];
+
+	arm_float_to_q15(a, b, 10);
+	arm_q15_to_float(b, c, 10);
 
 }
 
