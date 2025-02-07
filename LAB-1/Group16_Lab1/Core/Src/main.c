@@ -123,7 +123,7 @@ int main(void)
   while (1)
   {
 	ITM_Port32(31) = 1;
-	CMSISExperiment();
+	FloatingExperiment();
 	ITM_Port32(31) = 2;
 
     /* USER CODE END WHILE */
@@ -451,14 +451,14 @@ void BasicLoopTest(void){
 }
 
 void FloatingExperiment(void){
-	float a = 0.5;
-	float b = 0.125;
+	float a = 0.51;
+	float b = 0.1251;
 	float c = a * b;
 }
 
 void FixedExperiment(void){
-	int16_t a = 0.5;
-	int16_t b = 0.125;
+	int16_t a = 16384;
+	int16_t b = 4096;
 	int16_t c = a * b;
 }
 
