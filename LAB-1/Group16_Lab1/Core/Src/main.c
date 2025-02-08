@@ -109,12 +109,11 @@ int main(void)
   MX_I2S3_Init();
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
+  
   HAL_SuspendTick();
-//  printf(" Dominic Choi\nNathan Ante\nJan 30, 2025\nA Short Joke\n");
+  printf(" Dominic Choi\nNathan Ante\nJan 30, 2025\nA Short Joke\n");
 
 //  BasicLoopTest();
-
-
 
   /* USER CODE END 2 */
 
@@ -122,8 +121,11 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+
 	ITM_Port32(31) = 1;
-	FloatingExperiment();
+  // FloatingExperiment();
+  // FixedExperiment();
+  CMSISExperiment();
 	ITM_Port32(31) = 2;
 
     /* USER CODE END WHILE */
