@@ -25,6 +25,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
+#include "filter.h"
+
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 #define NUMBER_OF_TAPS	220
@@ -149,7 +151,10 @@ int main(void)
    ******************************************************************************
    */
 
-
+  FloatFilterInit();
+  for (int i = 0; i < NUMBER_OF_SAMPLES; i++){
+    newdata[i] = FloatFilterGet(*(data + i));
+  }
 
   static int i = 0;
   static int k = 0;

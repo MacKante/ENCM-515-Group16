@@ -1,3 +1,5 @@
+#include <something>
+
 /* This is the start address of where we are going to put our input data */
 #define DATA_START_ADDRESS	0x08020000
 
@@ -43,14 +45,23 @@ static float32_t filter_taps[31] = {
 };
 
 /* Here are our filter taps (as int16_t or q15_t) */
-static int16_t filter_taps[31] = {-141, -5, -119, 158, 118, 677, 787, 1685, 1946, 3122, 3422, 4684, 4819, 5908, 5674, 6372, 5674, 5908, 4819, 4684, 3422, 3122, 1946, 1685, 787, 677, 118, 158, -119, -5, -141};
+static int16_t filter_taps_int16_t[31] = {-141, -5, -119, 158, 118, 677, 787, 1685, 1946, 3122, 3422, 4684, 4819, 5908, 5674, 6372, 5674, 5908, 4819, 4684, 3422, 3122, 1946, 1685, 787, 677, 118, 158, -119, -5, -141};
 
 /* let's have our history and output arrays defined somewhere */
-float32_t history[31];
+float32_t history[31] = 0;
 float32_t newdata[NUMBER_OF_SAMPLES];
 
 /* this the function prototype for initializing the filter (specifically the history) */
 void FloatFilterInit(void);
+
+void FloatFilterInit(void) {
+  // set all the history to zero
+  for (int i = 0; i < 31; i++) {
+    history[i] = 0;
+  }
+
+  newdata = *data;
+}
 
 /* This is the function prototype that does the filtering given a new sample.
  * The filter should shuffle the history values (which it can because history is global 
@@ -58,15 +69,21 @@ void FloatFilterInit(void);
  */
 float32_t FloatFilterGet(float new_sample);
 
-
 /* here is the function that does the filtering */
 float32_t FloatFilterGet(float32_t newsample) {
 	// set the new sample as the head
 	history[0] = newsample;
 
 	// set up and do our convolution
+  float32_t accumulator = 0;
+  for (int i = 0; i < 31; i++) {
+    accumulator += history[i] * filter_taps[i];
+  }
 
 	// shuffle the history along for the next one?
+  for (int i = 30; i > 0; i--) {
+    history[i + 1] = history[i];
+  }
 
 	return accumulator;
 }
