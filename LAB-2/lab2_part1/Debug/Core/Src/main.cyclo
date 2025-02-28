@@ -1,0 +1,14 @@
+../Drivers/CMSIS/Include/core_cm4.h:2064:26:ITM_SendChar	4
+../Core/Inc/filter.h:71:6:FilterInit	2
+../Core/Inc/filter.h:86:11:FloatFilterGet	3
+../Core/Inc/filter.h:106:9:FixedFilterGet	3
+../Core/Src/main.c:76:5:main	2
+../Core/Src/main.c:139:6:SystemClock_Config	3
+../Core/Src/main.c:184:6:PeriphCommonClock_Config	2
+../Core/Src/main.c:205:13:MX_I2C1_Init	2
+../Core/Src/main.c:239:13:MX_I2S2_Init	2
+../Core/Src/main.c:273:13:MX_I2S3_Init	2
+../Core/Src/main.c:307:13:MX_SPI1_Init	2
+../Core/Src/main.c:345:13:MX_GPIO_Init	1
+../Core/Src/main.c:435:5:_write	2
+../Core/Src/main.c:448:6:Error_Handler	1
