@@ -1,6 +1,6 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
-# Toolchain: GNU Tools for STM32 (11.3.rel1)
+# Toolchain: GNU Tools for STM32 (12.3.rel1)
 ################################################################################
 
 -include ../makefile.init
@@ -67,8 +67,8 @@ all: main-build
 main-build: lab2_proj.elf secondary-outputs
 
 # Tool invocations
-lab2_proj.elf lab2_proj.map: $(OBJS) $(USER_OBJS) C:\Users\dominic\Desktop\Schoolwork\2025_Q1_Winter\ENCM\ 515\ENCM-515-Group16\LAB-2\lab2_proj\STM32F411VETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "lab2_proj.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\dominic\Desktop\Schoolwork\2025_Q1_Winter\ENCM 515\ENCM-515-Group16\LAB-2\lab2_proj\STM32F411VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="lab2_proj.map" -Wl,--gc-sections -static -L"C:\Users\dominic\Desktop\Schoolwork\2025_Q1_Winter\ENCM 515\ENCM-515-Group16\LAB-2\lab2_proj\Drivers\CMSIS\Lib\GCC" -L../Middlewares/ST/STM32_Audio/Addons/PDM/Lib --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+lab2_proj.elf lab2_proj.map: $(OBJS) $(USER_OBJS) C:\Users\Macante\Desktop\ENCM-515-Group16\LAB-2\lab2_proj\STM32F411VETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "lab2_proj.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Macante\Desktop\ENCM-515-Group16\LAB-2\lab2_proj\STM32F411VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="lab2_proj.map" -Wl,--gc-sections -static -L"C:\Users\Macante\Desktop\ENCM-515-Group16\LAB-2\lab2_proj\Drivers\CMSIS\Lib\GCC" -L../Middlewares/ST/STM32_Audio/Addons/PDM/Lib --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

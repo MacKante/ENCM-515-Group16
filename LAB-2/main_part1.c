@@ -32,7 +32,7 @@
 #define ITM_Port32(n) (*((volatile unsigned long *)(0xE0000000+4*n)))
 #define NUMBER_OF_TAPS	220
 #define BUFFER_SIZE 32
-// #define FUNCTIONAL_TEST 1 // uncomment this flag if we want to test the code without the interrupt
+#define FUNCTIONAL_TEST 1 // uncomment this flag if we want to test the code without the interrupt
 #define FILTER_MODE 1
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
@@ -152,25 +152,26 @@ int main(void)
    ******************************************************************************
    */
 
-//  FilterInit();
-//  ITM_Port32(31) = 1;
-//  #ifdef FILTER_MODE
-//    for (int i = 0; i < NUMBER_OF_SAMPLES; i++){
-//      newdata_int16[i] = FixedFilterGet(*(data_int16 + i));
-//    }
-//  #else
-//    for (int i = 0; i < NUMBER_OF_SAMPLES; i++){
-//      newdata[i] = FloatFilterGet(*(data + i));
-//    }
-//
-//  #endif
-//  ITM_Port32(31) = 2;
+  FilterInit();
+  ITM_Port32(31) = 1;
+  #ifdef FILTER_MODE
+    for (int i = 0; i < NUMBER_OF_SAMPLES; i++){
+      newdata_int16[i] = FixedFilterGet(*(data_int16 + i));
+    } 
+  #else
+    for (int i = 0; i < NUMBER_OF_SAMPLES; i++){
+      newdata[i] = FloatFilterGet(*(data + i));
+    } 
+    
+  #endif
+  ITM_Port32(31) = 2;
 
   static int i = 0;
   static int k = 0;
   static int start = 0;
 
   while (1) {
+
 
 #ifdef FUNCTIONAL_TEST
 		if (sample_count < 64000) {
@@ -374,7 +375,7 @@ static void GPIOA_Init(void){
 }
 
 static int16_t ProcessSample(int16_t newsample, int16_t* history) {
-	ITM_Port32(31) = 1;
+
 	// set the new sample as the head
 	history[0] = newsample;
 
@@ -400,8 +401,6 @@ static int16_t ProcessSample(int16_t newsample, int16_t* history) {
 
 	int16_t temp = (int16_t)(accumulator >> 15);
 
-	ITM_Port32(31) = 2;
-	__NOP();
 	return temp;
 }
 
